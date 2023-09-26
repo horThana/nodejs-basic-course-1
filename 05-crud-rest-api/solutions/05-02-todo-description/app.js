@@ -1,3 +1,13 @@
+/*
+Objective: Understand the flow of building REST API with Postman 
+
+Exercise:
+- Update Postman Add to have description.
+- Add new field for "description"
+- Check Postman Add to have description.
+- Check if the Postman list have the description.
+*/
+
 import express from "express";
 import { findTodo, listTodos, createTodo } from "./models/todo.js";
 
@@ -26,6 +36,7 @@ app.get("/todos/:todoId", (req, res) => {
 
 app.post("/todos", (req, res) => {
   const title = req.body.title;
+  const desc = req.body.desc;
 
   if (title.length > 30) {
     res
@@ -34,7 +45,7 @@ app.post("/todos", (req, res) => {
     return;
   }
 
-  const todo = createTodo({ title });
+  const todo = createTodo({ title, desc });
 
   res.json({ data: todo });
 });
